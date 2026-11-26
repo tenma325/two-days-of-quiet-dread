@@ -3,9 +3,11 @@
 
 Running this program writes the entry text to /output/entry.txt.
 
-The entry is a single code-review approval comment: the reviewer
-approves a pull request that works for reasons nobody can explain,
-after two days of quietly dreading what it might do in production.
+The entry is a single code-review approval comment. The pull
+request sat open for two days while the reviewer quietly
+dreaded what it might do in production; in the end it works,
+the tests pass, and nobody will ever truly know why, so it is
+approved before it changes its mind.
 
 The text is fixed in the source below, so every run produces
 exactly the same bytes. The program uses only the Python standard
@@ -20,13 +22,18 @@ ENTRY_TEXT = "LGTM. The code works, the tests pass, and none of us will ever tru
 MAX_CHARS = 140
 
 
+def check_length(text: str) -> str:
+    """Return the text if it fits the limit, else raise."""
+    if not 1 <= len(text) <= MAX_CHARS:
+        raise ValueError(
+            f"entry must be 1-{MAX_CHARS} characters, got {len(text)}"
+        )
+    return text
+
+
 def render() -> str:
     """Return the entry text after checking it against the limit."""
-    if not 1 <= len(ENTRY_TEXT) <= MAX_CHARS:
-        raise ValueError(
-            f"entry must be 1-{MAX_CHARS} characters, got {len(ENTRY_TEXT)}"
-        )
-    return ENTRY_TEXT
+    return check_length(ENTRY_TEXT)
 
 
 def write_entry(text: str) -> Path:
