@@ -3,11 +3,11 @@
 
 Running this program writes the entry text to /output/entry.txt.
 
-The entry is a single code-review approval comment. The pull
-request sat open for two days while the reviewer quietly
-dreaded what it might do in production; in the end it works,
-the tests pass, and nobody will ever truly know why, so it is
-approved before it changes its mind.
+The entry is a single code-review approval comment, written
+after two days of quiet dread: the pull request sat open while
+the reviewer imagined everything it could break in production.
+In the end it works, the tests pass, and nobody will ever
+truly know why, so it is approved before it changes its mind.
 
 The text is fixed in the source below, so every run produces
 exactly the same bytes. The program uses only the Python standard
